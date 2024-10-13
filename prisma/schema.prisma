@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+enum Preference {
+  NIGHT_OWL
+  EARLY_BIRD
+  QUIET
+  SOCIAL
+  CLEAN
+  STUDIOUS
+  PET_FRIENDLY
+  NON_SMOKER
+  VEGETARIAN
+  FITNESS_ENTHUSIAST
+}
+enum Amenity {
+  FRIDGE
+  WASHING_MACHINE
+  AC
+  PARKING
+  TV
+  INTERNET
+  ELEVATOR
+  GYM
+  LAUNDRY_SERVICE
+  SAUNA
+  POOL
+}
+
+model Ad {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId // Unique identifier for the ad
+  userId            String // Reference to the user who created the ad
+  title             String   // Title of the ad
+  description       String   // Description of the ad
+  location          String   // Location of the property
+  photos            String[] // Array of photo URLs
+  rent              Float    // Rent amount
+  lookingFor        String   // Looking for (e.g., "male", "female", "any")
+  occupancyType     String   // Type of occupancy (e.g., "two shared", "triple shared")
+  features          String[] // Array of features (e.g., "no restriction", "newly built", "balcony")
+  amenities         Amenity[] // Array of amenities (e.g., "fridge", "washing machine", "AC", "parking")
+  preferences       Preference[] // Array of preferences (e.g., "night owl", "party monster", "studious")
+  createdAt         DateTime @default(now()) // Timestamp for when the ad was created
+  updatedAt         DateTime @updatedAt // Timestamp for when the ad was last updated
+}

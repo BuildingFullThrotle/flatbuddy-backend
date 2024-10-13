@@ -1,0 +1,27 @@
+meta {
+  name: creating ad
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/api/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "userId": "23423sdfa",
+    "title": "something good",
+    "description": "something better than good",
+    "location": "near vikhroli",
+    "photos": ["https://google.com/hello.png"],
+    "rent": 3444,
+    "lookingFor": "male",
+    "occupancyType": "shared",
+    "features": ["nice", "food"],
+    "amenities": ["fridge", "washing machine"], // Corrected spelling of "fridge"
+    "preferences": ["thick", "milf"]
+  }
+}
