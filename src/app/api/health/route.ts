@@ -1,3 +1,3 @@
 export async function GET() {
-    return Response.json({ status: 'Up and Running' })
+    return Response.json({ status: 200, data: "ok"});
 }
